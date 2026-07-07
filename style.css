@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #05050a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.gotham-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom center;
+  pointer-events: none;
+}
+
+.clouds-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.clouds-track {
+  width: 100%;
+  height: 100%;
+  background-image: url('assets_ms-paint/clouds.png');
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-position: bottom center;
+  animation: cloudDrift 45s linear infinite;
+}
+
+@keyframes cloudDrift {
+  from { background-position-x: 0; }
+  to { background-position-x: -3840px; }
+}
+
+.twinkle {
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+.twinkle-1 { animation: blink 3s infinite 0s; }
+.twinkle-2 { animation: blink 4s infinite 1.5s; }
+.twinkle-3 { animation: blink 2.5s infinite 0.7s; }
+
+@keyframes blink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+.signal-trigger-input {
+  display: none;
+}
+
+.projector-click-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.projector-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom center;
+  pointer-events: auto;
+  transition: transform 0.2s ease;
+}
+
+.on-state { display: none; }
+.bat-beam {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#signal-toggle:checked ~ .bat-beam {
+  opacity: 1;
+}
+#signal-toggle:checked ~ .projector-click-box .off-state {
+  display: none;
+}
+#signal-toggle:checked ~ .projector-click-box .on-state {
+  display: block;
+}
